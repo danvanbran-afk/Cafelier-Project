@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Cafélier Bistrô</title>
+</head>
+<body>
+  <div id="game-container">
+    <!-- Header with game status -->
+    <header>
+      <h1>Cafélier Bistrô</h1>
+      <div class="stats">
+        <p>Tips: $<span id="score">0</span></p>
+        <p>Patience: <span id="lives">3</span>/3</p>
+      </div>
+    </header>
+
+    <!-- Main area where orders will appear -->
+    <main id="app">
+      <div id="order-board">
+        <!-- The <ul> and <li> elements will be injected here via JS -->
+        <ul id="active-orders"></ul>
+      </div>
+    </main>
+
+    <!-- Barista Input: Where the player types to clear the challenge -->
+    <footer>
+      <div class="input-area">
+        <label for="barista-input">Prepare Order:</label>
+        <input 
+          type="text" 
+          id="barista-input" 
+          placeholder="Type 'Coffee' or 'Tea'..." 
+          autocomplete="off"
+          autofocus
+        >
+        
+      <!-- Main Board: Replaced with an interactive order button -->
+<main id="app">
+  <div id="order-board">
+    <p class="order-prompt">Click here to order!</p>
+    <button id="order-btn" class="primary-btn">Place New Order</button>
+    
+    <!-- The list remains here but will be empty until the button is clicked -->
+    <ul id="active-orders"></ul>
+  </div>
+</main>
+
+  <!-- Logic files -->
+  <script src="player.js"></script>
+  <script src="cafélierbistrô.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
+
