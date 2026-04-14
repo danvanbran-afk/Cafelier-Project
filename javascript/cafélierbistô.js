@@ -2,10 +2,10 @@
 const state = {
     tips: 0,
     patience: 3,
-    orders: [] // Stores the strings: "Coffee" or "Tea"
+    orders: [] // Armazena as strings: "Coffee" ou "Tea"
 };
 
-// 2. DOM Elements
+// 2. DOM Elements - Capturados pelos IDs exatos do teu HTML
 const scoreDisplay = document.getElementById("score");
 const livesDisplay = document.getElementById("lives");
 const orderListUI = document.getElementById("active-orders");
@@ -14,7 +14,7 @@ const orderBtn = document.getElementById("order-btn");
 
 // 3. Functions
 
-// Add a random order to the queue
+// Função para adicionar um pedido aleatório à lista
 function placeOrder() {
     if (state.patience <= 0) {
         alert("Game Over! The café is closed.");
@@ -24,42 +24,51 @@ function placeOrder() {
     const drinks = ["Coffee", "Tea"];
     const randomDrink = drinks[Math.floor(Math.random() * drinks.length)];
 
-    // Update State
+    // Atualiza o Estado (Lógica)
     state.orders.push(randomDrink);
 
-    // Update UI: Create <li> and add it to the <ul>
+    // Atualiza a Interface (DOM)
     const li = document.createElement("li");
     li.textContent = randomDrink;
-    li.classList.add("user-item"); 
+    li.classList.add("user-item"); // Classe para o estilo CSS
     orderListUI.appendChild(li);
 }
 
-// Check input and remove the oldest order
+// Função para validar o que o utilizador escreve
 function handleBaristaWork(e) {
-    const typedValue = e.target.value.trim();
-    const firstOrderInQueue = state.orders[0];
+    // Remove espaços extra e ignora maiúsculas/minúsculas
+    const typedValue = e.target.value.trim().toLowerCase();
+    const firstOrderInQueue = state.orders[0] ? state.orders[0].toLowerCase() : null;
 
-    // Match found (Case Insensitive)
-    if (firstOrderInQueue && typedValue.toLowerCase() === firstOrderInQueue.toLowerCase()) {
-        // 1. Update Logic State
-        state.orders.shift(); // Remove from array
+    // Se o que foi escrito for igual ao primeiro pedido da fila
+    if (firstOrderInQueue && typedValue === firstOrderInQueue) {
+        // 1. Atualiza o Estado
+        state.orders.shift(); // Remove o primeiro pedido do array
         state.tips += 10;
 
-        // 2. Update UI
+        // 2. Atualiza o DOM
         scoreDisplay.textContent = state.tips;
+        
+        // Remove o primeiro <li> da lista visual
         if (orderListUI.firstChild) {
             orderListUI.removeChild(orderListUI.firstChild);
         }
 
-        // 3. Reset Input
+        // 3. Limpa o campo de texto para o próximo pedido
         e.target.value = "";
         
-        // Simple UI Feedback
+        // Feedback Visual Simples (Brilho no Score)
         scoreDisplay.style.color = "gold";
-        setTimeout(() => scoreDisplay.style.color = "", 300);
+        scoreDisplay.style.fontWeight = "bold";
+        setTimeout(() => {
+            scoreDisplay.style.color = "";
+            scoreDisplay.style.fontWeight = "";
+        }, 300);
     }
 }
 
-// 4. Event Listeners
-orderBtn.addEventListener("click", placeOrder);
-baristaInput.addEventListener("input", handleBaristaWork);
+// 4. Event Listeners - Ligação entre as ações e as funções
+if (orderBtn && baristaInput) {
+    orderBtn.addEventListener("click", placeOrder);
+    baristaInput.addEventListener("input", handleBaristaWork);
+}

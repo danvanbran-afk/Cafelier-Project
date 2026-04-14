@@ -134,3 +134,10 @@ footer {
   color: var(--coffee-medium);
   margin-top: 10px;
 }
+
+/* --- Media Queries --- */
+@media (min-width: 768px) {
+  #game-container {
+    padding: 3rem;
+  }
+}
