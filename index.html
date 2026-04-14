@@ -3,38 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cafélier Bistrô</title>
+  <title>Cafélier Bistrô - Lo-fi Game</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
   <div id="game-container">
-    <header>
-      <h1>Cafélier Bistrô</h1>
-      <div class="stats">
-        <p>Tips: $<span id="score">0</span></p>
-        <p>Patience: <span id="lives">3</span>/3</p>
-      </div>
-    </header>
 
-    <main id="app">
+    <div class="audio-controls">
+    <button id="mute-btn">🔊</button>
+  </div>
+    
+    <!-- SCREEN 1: START MENU -->
+    <section id="screen-start" class="screen">
+      <h1>Cafélier Bistrô</h1>
+      <div class="ranking-preview">
+        <h3>🏆 Top 3 Baristas</h3>
+        <ol id="best-three-list"></ol>
+      </div>
+      <button id="start-btn" class="primary-btn">OPEN SHOP</button>
+    </section>
+
+    <!-- SCREEN 2: THE GAME -->
+    <section id="screen-game" class="screen hidden">
+      <header>
+        <div class="stats">
+          <p>Tips: $<span id="score">0</span></p>
+          <p>Time: <span id="timer">60</span>s</p>
+        </div>
+      </header>
       <div id="order-board">
-        <p class="order-prompt">Click here to order!</p>
-        <button id="order-btn" class="primary-btn">Place New Order</button>
+        <button id="pause-btn">Pause Game</button>
         <ul id="active-orders"></ul>
       </div>
-    </main>
+      <footer>
+        <input type="text" id="barista-input" placeholder="Type & Enter..." autocomplete="off">
+      </footer>
+    </section>
 
-    <footer>
-      <div class="input-area">
-        <label for="barista-input">Prepare Order:</label>
-        <input type="text" id="barista-input" placeholder="Type 'Coffee' or 'Tea'..." autocomplete="off" autofocus>
+    <!-- SCREEN 3: RANKING -->
+    <section id="screen-ranking" class="screen hidden">
+      <h1>Daily Ranking</h1>
+      <div class="full-ranking">
+        <ol id="top-ten-list"></ol>
       </div>
-      <p class="hint">Type the item name to serve the oldest order</p>
-    </footer>
+      <button id="restart-btn" class="primary-btn">BACK TO MENU</button>
+    </section>
+
   </div>
 
-  <!-- Alterado para a raiz para evitar erros de pasta -->
+  <!-- Background Music -->
+  <audio id="bg-music" loop>
+    <source src="lnplusmusic-jazz-background-music-416542 (1).mp3" type="audio/mpeg">
+  </audio>
+
   <script src="index.js"></script>
 </body>
 </html>
