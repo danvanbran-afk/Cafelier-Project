@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cafélier Bistrô</title>
-  <!-- Conexão com o teu CSS dentro da pasta css -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,7 +12,6 @@
     <header>
       <h1>Cafélier Bistrô</h1>
       <div class="stats">
-        <!-- IDs correspondentes ao teu JS: score e lives -->
         <p>Tips: $<span id="score">0</span></p>
         <p>Patience: <span id="lives">3</span>/3</p>
       </div>
@@ -22,10 +20,7 @@
     <main id="app">
       <div id="order-board">
         <p class="order-prompt">Click here to order!</p>
-        <!-- ID correspondente ao teu JS: order-btn -->
         <button id="order-btn" class="primary-btn">Place New Order</button>
-        
-        <!-- ID correspondente ao teu JS: active-orders -->
         <ul id="active-orders"></ul>
       </div>
     </main>
@@ -33,20 +28,13 @@
     <footer>
       <div class="input-area">
         <label for="barista-input">Prepare Order:</label>
-        <!-- ID correspondente ao teu JS: barista-input -->
-        <input 
-          type="text" 
-          id="barista-input" 
-          placeholder="Type 'Coffee' or 'Tea'..." 
-          autocomplete="off"
-          autofocus
-        >
+        <input type="text" id="barista-input" placeholder="Type 'Coffee' or 'Tea'..." autocomplete="off" autofocus>
       </div>
       <p class="hint">Type the item name to serve the oldest order</p>
     </footer>
   </div>
 
-  <!-- Conexão com o teu JS (verifica se o nome do ficheiro é index.js) -->
+  <!-- Alterado para a raiz para evitar erros de pasta -->
   <script src="index.js"></script>
 </body>
 </html>
