@@ -3,17 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cafélier Bistrô - Lo-fi Game</title>
+  <title>Cafélier Bistrô - Vintage Edition</title>
   <link rel="stylesheet" href="css/style.css">
+  <link href="https://images.stockcake.com/public/3/e/5/3e59eb35-c9fb-48df-bbff-ca8f96c43106_large/proud-pixel-barista-stockcake.jpg" rel="stylesheet">
 </head>
 <body>
   <div id="game-container">
-
-    <div class="audio-controls">
-    <button id="mute-btn">🔊</button>
-  </div>
     
-    <!-- SCREEN 1: START MENU -->
+    <!-- Mute Button -->
+    <div class="audio-controls">
+      <button id="mute-btn">🔊</button>
+    </div>
+
+    <!-- SCREEN 1: START MENU (Vintage Style) -->
     <section id="screen-start" class="screen">
       <h1>Cafélier Bistrô</h1>
       <div class="ranking-preview">
@@ -31,6 +33,12 @@
           <p>Time: <span id="timer">60</span>s</p>
         </div>
       </header>
+
+      <!-- Barista Animation Area -->
+      <div class="barista-container">
+        <div class="barista-sprite"></div>
+      </div>
+
       <div id="order-board">
         <button id="pause-btn">Pause Game</button>
         <ul id="active-orders"></ul>
@@ -42,7 +50,7 @@
 
     <!-- SCREEN 3: RANKING -->
     <section id="screen-ranking" class="screen hidden">
-      <h1>Daily Ranking</h1>
+      <h1>Hall of Fame</h1>
       <div class="full-ranking">
         <ol id="top-ten-list"></ol>
       </div>
@@ -51,10 +59,12 @@
 
   </div>
 
-  <!-- Background Music -->
+  <!-- Background Music (Using your file name) -->
   <audio id="bg-music" loop>
     <source src="lnplusmusic-jazz-background-music-416542 (1).mp3" type="audio/mpeg">
   </audio>
+
+
 
   <script src="index.js"></script>
 </body>

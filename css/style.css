@@ -4,9 +4,9 @@
   --coffee-light: #d7ccc8;
   --paper: #f5f5f5;
   --accent: #6f4e37;
+  --gold: #f39c12;
 }
 
-/* --- Base Layout --- */
 body {
   background-color: var(--coffee-light);
   font-family: 'Courier New', Courier, monospace;
@@ -22,90 +22,104 @@ body {
   background-color: var(--paper);
   width: 95%;
   max-width: 500px;
-  padding: 2rem;
+  min-height: 550px;
   border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
   text-align: center;
-  position: relative; /* Importante para o botão Mute */
-  min-height: 450px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--coffee-dark);
 }
 
-/* --- Navigation & Screens --- */
-.screen { transition: opacity 0.3s ease; }
+.screen { padding: 2rem; transition: opacity 0.3s ease; }
 .hidden { display: none !important; }
 
-/* --- Audio Controls --- */
-.audio-controls {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  z-index: 100;
-}
-
-#mute-btn {
-  background: white;
-  border: 1px solid var(--coffee-medium);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-}
-
-/* --- Game Elements --- */
-.primary-btn, #pause-btn {
-  background-color: var(--accent);
+/* --- SCREEN 1: VINTAGE STYLE --- */
+#screen-start {
+  background-image: linear-gradient(rgba(111, 78, 55, 0.75), rgba(111, 78, 55, 0.75)), 
+                    url('https://unsplash.com');
+  background-size: cover;
+  background-position: center;
   color: white;
-  border: none;
+  border: 6px double var(--paper);
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#screen-start h1 { font-size: 2.2rem; text-shadow: 2px 2px 0px var(--coffee-dark); }
+
+.ranking-preview {
+  background: rgba(62, 39, 35, 0.6);
+  border: 2px solid var(--gold);
+  padding: 10px 20px;
+  margin: 20px auto;
+  width: fit-content;
+  position: relative;
+}
+
+.ranking-preview::before, .ranking-preview::after {
+  content: "☕";
+  position: absolute;
+  font-size: 1.2rem;
+}
+.ranking-preview::before { top: -10px; left: -10px; transform: rotate(-20deg); }
+.ranking-preview::after { bottom: -10px; right: -10px; transform: rotate(20deg); }
+
+/* --- SCREEN 2: BARISTA ANIMATION --- */
+.barista-container { margin: 15px 0; }
+.barista-sprite {
+  width: 80px; height: 80px;
+  margin: 0 auto;
+  background-image: url('https://freepik.com');
+  background-size: cover;
+  border-radius: 50%;
+  border: 3px solid var(--coffee-medium);
+  animation: baristaServing 1s ease-in-out infinite;
+}
+
+@keyframes baristaServing {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* --- UI ELEMENTS --- */
+.primary-btn {
+  background-color: var(--gold);
+  color: var(--coffee-dark);
+  border: 2px solid var(--coffee-dark);
   padding: 12px 24px;
+  font-weight: bold;
   cursor: pointer;
-  font-family: inherit;
-  margin-top: 20px;
-  box-shadow: 2px 2px 0px var(--coffee-dark);
-  text-transform: uppercase;
+  box-shadow: 3px 3px 0px var(--coffee-dark);
 }
 
 #active-orders {
-  list-style: none;
-  padding: 20px 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  min-height: 120px;
+  list-style: none; padding: 15px 0;
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
 }
 
 .user-item {
-  background-color: var(--coffee-medium);
-  color: white;
-  padding: 8px 15px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  animation: popIn 0.3s ease-out;
+  background-color: var(--coffee-medium); color: white;
+  padding: 6px 12px; border-radius: 15px; font-size: 0.8rem;
 }
 
 #barista-input {
-  width: 80%;
-  padding: 12px;
-  border: 2px solid var(--coffee-medium);
-  text-align: center;
-  font-family: inherit;
-  outline: none;
+  width: 80%; padding: 10px; border: 2px solid var(--coffee-medium); text-align: center;
 }
 
-/* --- Ranking Lists --- */
-ol {
-  text-align: left;
-  display: inline-block;
-  margin: 20px 0;
-  line-height: 1.6;
-}
+.audio-controls { position: absolute; top: 10px; right: 10px; z-index: 100; }
+#mute-btn { background: var(--paper); border: 1px solid var(--coffee-dark); border-radius: 50%; cursor: pointer; }
 
-@keyframes popIn {
-  0% { transform: scale(0); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+.full-ranking { border: 3px double var(--coffee-medium); padding: 15px; margin: 15px 0; }
+
+/* --- RANKING SCREEN --- */
+#screen-ranking {
+  background-image: linear-gradient(rgba(111, 78, 55, 0.75), rgba(111, 78, 55, 0.75)), 
+                    url('https://unsplash.com');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  border: 6px double var(--paper);
+  height: 100%;
+  box-sizing: border-box;
 }
