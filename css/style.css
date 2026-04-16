@@ -1,3 +1,4 @@
+/* --- 1. GLOBAL VARIABLES --- */
 :root {
   --coffee-dark: #3e2723;
   --coffee-medium: #5d4037;
@@ -5,8 +6,11 @@
   --paper: #f5f5f5;
   --accent: #6f4e37;
   --gold: #f39c12;
+  --error: #e74c3c;
+  --shadow: rgba(0, 0, 0, 0.4);
 }
 
+/* --- 2. BASE RESET AND LAYOUT --- */
 body {
   background-color: var(--coffee-light);
   font-family: 'Courier New', Courier, monospace;
@@ -22,104 +26,223 @@ body {
   background-color: var(--paper);
   width: 95%;
   max-width: 500px;
-  min-height: 550px;
-  border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  min-height: 600px;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px var(--shadow);
   text-align: center;
   position: relative;
   overflow: hidden;
-  border: 2px solid var(--coffee-dark);
+  border: 3px solid var(--coffee-dark);
 }
 
-.screen { padding: 2rem; transition: opacity 0.3s ease; }
-.hidden { display: none !important; }
-
-/* --- SCREEN 1: VINTAGE STYLE --- */
-#screen-start {
-  background-image: linear-gradient(rgba(111, 78, 55, 0.75), rgba(111, 78, 55, 0.75)), 
-                    url('https://unsplash.com');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  border: 6px double var(--paper);
+/* --- 3. NAVIGATION SYSTEM --- */
+.screen {
+  padding: 2.5rem;
+  transition: opacity 0.4s ease-in-out;
   height: 100%;
   box-sizing: border-box;
 }
 
-#screen-start h1 { font-size: 2.2rem; text-shadow: 2px 2px 0px var(--coffee-dark); }
+.hidden {
+  display: none !important;
+}
+
+/* --- 4. START SCREEN: VINTAGE BISTRO --- */
+#screen-start {
+  background-image: linear-gradient(rgba(111, 78, 55, 0.8), rgba(111, 78, 55, 0.8)), 
+                    url('https://unsplash.com');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  border: 8px double var(--paper);
+}
+
+.main-title {
+  font-size: 2.4rem;
+  text-shadow: 3px 3px 0px var(--coffee-dark);
+  margin-top: 0;
+}
+
+.how-to-play {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 20px 0;
+  font-size: 0.9rem;
+  background: rgba(0,0,0,0.2);
+  padding: 10px;
+  border-radius: 5px;
+}
 
 .ranking-preview {
-  background: rgba(62, 39, 35, 0.6);
+  background: rgba(62, 39, 35, 0.75);
   border: 2px solid var(--gold);
-  padding: 10px 20px;
-  margin: 20px auto;
+  padding: 12px 25px;
+  margin: 25px auto;
   width: fit-content;
   position: relative;
 }
 
-.ranking-preview::before, .ranking-preview::after {
+.ranking-preview::before, 
+.ranking-preview::after {
   content: "☕";
   position: absolute;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
-.ranking-preview::before { top: -10px; left: -10px; transform: rotate(-20deg); }
-.ranking-preview::after { bottom: -10px; right: -10px; transform: rotate(20deg); }
+.ranking-preview::before { top: -12px; left: -12px; transform: rotate(-25deg); }
+.ranking-preview::after { bottom: -12px; right: -12px; transform: rotate(25deg); }
 
-/* --- SCREEN 2: BARISTA ANIMATION --- */
-.barista-container { margin: 15px 0; }
+/* --- 5. GAMEPLAY ANIMATIONS --- */
+.barista-container {
+  margin: 20px 0;
+}
+
 .barista-sprite {
-  width: 80px; height: 80px;
+  width: 100px;
+  height: 100px;
   margin: 0 auto;
-  background-image: url('https://freepik.com');
+  background-image: url('Pixel art barista behind cafe counter cozy vibes with coffee and warm string lights _ Premium AI-generated image.html');
   background-size: cover;
-  border-radius: 50%;
+  background-position: center;
+  background-color: white; 
   border: 3px solid var(--coffee-medium);
-  animation: baristaServing 1s ease-in-out infinite;
+  border-radius: 50%;
+  animation: serving 1s infinite ease-in-out;
 }
 
-@keyframes baristaServing {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+@keyframes servingAction {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(3deg); }
 }
 
-/* --- UI ELEMENTS --- */
+/* --- 6. UX FEEDBACK: SHAKE --- */
+.shake {
+  animation: errorShake 0.4s;
+  border-color: var(--error) !important;
+  background-color: #ffedeb !important;
+}
+
+@keyframes errorShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+/* --- 7. ORDER BOARD AND PAUSE --- */
+#order-board {
+  position: relative;
+  min-height: 180px;
+  background: rgba(215, 204, 200, 0.25);
+  border-radius: 6px;
+  margin-bottom: 15px;
+  border: 1px dashed var(--coffee-medium);
+}
+
+#pause-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+#active-orders {
+  list-style: none;
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.user-item {
+  background-color: var(--coffee-medium);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 18px;
+  font-size: 0.85rem;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+/* --- 8. INPUT AND BUTTONS --- */
+#barista-input {
+  width: 90%;
+  padding: 14px;
+  border: 2px solid var(--coffee-medium);
+  font-family: inherit;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
 .primary-btn {
   background-color: var(--gold);
   color: var(--coffee-dark);
   border: 2px solid var(--coffee-dark);
-  padding: 12px 24px;
+  padding: 14px 28px;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 3px 3px 0px var(--coffee-dark);
+  box-shadow: 5px 5px 0px var(--coffee-dark);
+  font-family: inherit;
 }
 
-#active-orders {
-  list-style: none; padding: 15px 0;
-  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+.primary-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0px var(--coffee-dark);
 }
 
-.user-item {
-  background-color: var(--coffee-medium); color: white;
-  padding: 6px 12px; border-radius: 15px; font-size: 0.8rem;
-}
-
-#barista-input {
-  width: 80%; padding: 10px; border: 2px solid var(--coffee-medium); text-align: center;
-}
-
-.audio-controls { position: absolute; top: 10px; right: 10px; z-index: 100; }
-#mute-btn { background: var(--paper); border: 1px solid var(--coffee-dark); border-radius: 50%; cursor: pointer; }
-
-.full-ranking { border: 3px double var(--coffee-medium); padding: 15px; margin: 15px 0; }
-
-/* --- RANKING SCREEN --- */
-#screen-ranking {
-  background-image: linear-gradient(rgba(111, 78, 55, 0.75), rgba(111, 78, 55, 0.75)), 
-                    url('https://unsplash.com');
-  background-size: cover;
-  background-position: center;
+.secondary-btn {
+  background: var(--accent);
   color: white;
-  border: 6px double var(--paper);
-  height: 100%;
-  box-sizing: border-box;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
+/* --- 9. AUDIO AND RANKING --- */
+.audio-controls {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 100;
+}
+
+#mute-btn {
+  background: var(--paper);
+  border: 2px solid var(--coffee-dark);
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  font-size: 1.3rem;
+}
+
+.full-ranking {
+  border: 5px double var(--coffee-medium);
+  padding: 20px;
+  margin: 25px 0;
+  background-color: rgba(215, 204, 200, 0.3);
+}
+
+ol {
+  text-align: left;
+  display: inline-block;
+}
+
+ol li {
+  margin: 5px 0;
 }

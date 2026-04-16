@@ -1,71 +1,143 @@
 <!DOCTYPE html>
+<!-- Project: Cafélier Bistrô - Professional Edition -->
 <html lang="en">
 <head>
+  <!-- 1. METADATA AND SETUP -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cafélier Bistrô - Vintage Edition</title>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <!-- SEO and Tab Title -->
+  <title>Cafélier Bistrô - Lo-fi Barista Experience</title>
+  
+  <!-- CSS Connection (Ensure the 'css' folder exists) -->
   <link rel="stylesheet" href="css/style.css">
-  <link href="https://images.stockcake.com/public/3/e/5/3e59eb35-c9fb-48df-bbff-ca8f96c43106_large/proud-pixel-barista-stockcake.jpg" rel="stylesheet">
 </head>
 <body>
+
+  <!-- MAIN WRAPPER: Contains the entire game experience -->
   <div id="game-container">
     
-    <!-- Mute Button -->
+    <!-- 2. SYSTEM CONTROLS -->
+    <!-- Floating Audio Button for Mute/Unmute -->
     <div class="audio-controls">
-      <button id="mute-btn">🔊</button>
+      <button id="mute-btn" title="Toggle Sound Effects and Music">🔊</button>
     </div>
 
-    <!-- SCREEN 1: START MENU (Vintage Style) -->
+    <!-- 3. SCREEN 1: START MENU (Vintage/Sepia Aesthetic) -->
+    <!-- This screen is visible on load and hidden during gameplay -->
     <section id="screen-start" class="screen">
-      <h1>Cafélier Bistrô</h1>
-      <div class="ranking-preview">
-        <h3>🏆 Top 3 Baristas</h3>
-        <ol id="best-three-list"></ol>
+      
+      <h1 class="main-title">Cafélier Bistrô</h1>
+      
+      <!-- UX: Quick Visual Tutorial -->
+      <div class="how-to-play">
+        <div class="step">
+          <span class="icon">⌨️</span> 
+          <span class="text">Type the incoming order</span>
+        </div>
+        <div class="step">
+          <span class="icon">↵</span> 
+          <span class="text">Confirm with Enter key</span>
+        </div>
+        <div class="step">
+          <span class="icon">💰</span> 
+          <span class="text">Earn tips for your shift</span>
+        </div>
       </div>
-      <button id="start-btn" class="primary-btn">OPEN SHOP</button>
+
+      <!-- High Score Preview (Top 3) -->
+      <div class="ranking-preview">
+        <h3 class="gold-text">🏆 Current Top 3 Baristas</h3>
+        <ol id="best-three-list">
+          <!-- Populated by updateRankingUI in index.js -->
+        </ol>
+      </div>
+      
+      <!-- Start Interaction Button -->
+      <button id="start-btn" class="primary-btn">OPEN THE SHOP</button>
     </section>
 
-    <!-- SCREEN 2: THE GAME -->
+    <!-- 4. SCREEN 2: GAMEPLAY INTERFACE -->
+    <!-- This section is hidden until the player clicks 'Open Shop' -->
     <section id="screen-game" class="screen hidden">
-      <header>
+      
+      <header class="game-header">
         <div class="stats">
-          <p>Tips: $<span id="score">0</span></p>
-          <p>Time: <span id="timer">60</span>s</p>
+          <!-- Score Tracking -->
+          <div class="stat-box">
+            Tips: $<span id="score">0</span>
+          </div>
+          <!-- 60s Countdown Timer -->
+          <div class="stat-box">
+            Time: <span id="timer">60</span>s
+          </div>
         </div>
       </header>
 
-      <!-- Barista Animation Area -->
+      <!-- Animated Barista Visual -->
       <div class="barista-container">
         <div class="barista-sprite"></div>
       </div>
 
+      <!-- Dynamic Order Board -->
       <div id="order-board">
-        <button id="pause-btn">Pause Game</button>
-        <ul id="active-orders"></ul>
+        <!-- Anti-Cheat Overlay (Visible when game is paused) -->
+        <div id="pause-overlay" class="hidden">
+          <div class="pause-content">PAUSED - TAKE A BREAK</div>
+        </div>
+        
+        <!-- Target List for the Barista (Coffee/Tea items) -->
+        <ul id="active-orders">
+          <!-- Injected dynamically by spawnOrder function -->
+        </ul>
       </div>
-      <footer>
-        <input type="text" id="barista-input" placeholder="Type & Enter..." autocomplete="off">
+
+      <footer class="game-footer">
+        <!-- Control to pause the shift -->
+        <button id="pause-btn" class="secondary-btn">Pause Game</button>
+        
+        <!-- Barista Interaction Field (Anti-paste enabled in JS) -->
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            id="barista-input" 
+            placeholder="Prepare the order here..." 
+            autocomplete="off"
+            spellcheck="false"
+          >
+        </div>
       </footer>
     </section>
 
-    <!-- SCREEN 3: RANKING -->
+    <!-- 5. SCREEN 3: HALL OF FAME (Final Results) -->
+    <!-- Visible only after the 60s timer expires -->
     <section id="screen-ranking" class="screen hidden">
-      <h1>Hall of Fame</h1>
+      <h1 class="gold-text">Hall of Fame</h1>
+      
+      <!-- Full list of the Top 10 scores recorded -->
       <div class="full-ranking">
-        <ol id="top-ten-list"></ol>
+        <ol id="top-ten-list">
+          <!-- Injected via localStorage in index.js -->
+        </ol>
       </div>
-      <button id="restart-btn" class="primary-btn">BACK TO MENU</button>
+      
+      <!-- Navigation back to the Start Menu -->
+      <button id="restart-btn" class="primary-btn">RETURN TO MENU</button>
     </section>
 
   </div>
 
-  <!-- Background Music (Using your file name) -->
+  <!-- 6. MULTIMEDIA ASSETS -->
+  <!-- Main Soundtrack -->
   <audio id="bg-music" loop>
     <source src="lnplusmusic-jazz-background-music-416542 (1).mp3" type="audio/mpeg">
+    Your browser does not support the HTML5 audio tag.
   </audio>
 
-
-
+  <!-- 7. SCRIPT INJECTION -->
+  <!-- Loaded at the end to ensure DOM availability -->
   <script src="index.js"></script>
+
 </body>
 </html>
