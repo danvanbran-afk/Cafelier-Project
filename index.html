@@ -58,7 +58,7 @@
       <button id="start-btn" class="primary-btn">OPEN THE SHOP</button>
     </section>
 
-    <!-- 4. SCREEN 2: GAMEPLAY INTERFACE -->
+    <!-- 4. SCREEN 2: GAMEPLAY INTERFACE (Bistro Background) -->
     <!-- This section is hidden until the player clicks 'Open Shop' -->
     <section id="screen-game" class="screen hidden">
       
@@ -73,12 +73,12 @@
             Time: <span id="timer">60</span>s
           </div>
         </div>
-      </header>
 
-      <!-- Animated Barista Visual -->
-      <div class="barista-container">
-        <div class="barista-sprite"></div>
-      </div>
+        <!-- NEW UX FEATURE: VISUAL TIMER BAR -->
+        <div class="timer-bar-container">
+          <div id="timer-progress"></div>
+        </div>
+      </header>
 
       <!-- Dynamic Order Board -->
       <div id="order-board">
