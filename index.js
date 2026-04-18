@@ -10,9 +10,9 @@ const state = {
 };
 
 const sfx = {
-    success: new Audio('success.mp3'),
-    error: new Audio('error.mp3'),
-    record: new Audio('record.mp3')
+    success: new Audio('zapsplat_foley_cash_register_ka_ching_002_44083.mp3'),
+    error: new Audio('zapsplat_multimedia_gameshow_buzzer_incorrect_buzz_low_pitched_002_91601.mp3'),
+    record: new Audio('zapsplat_multimedia_game_sound_bright_positive_end_success_level_up_109631.mp3')
 };
 
 const screens = {

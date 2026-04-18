@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafelier | Barista Typing Challenge</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="game-container">
+        <header>
+            <h1>Cafelier ☕</h1>
+            <p>Type the orders to serve customers!</p>
+        </header>
+
+        <section id="stats">
+            <div>Score: <span id="score">0</span></div>
+            <div id="timer-container">
+                Time: <span id="time-left">10</span>s
+                <div id="progress-bar"><div id="progress-fill"></div></div>
+            </div>
+        </section>
+
+        <section id="game-area">
+            <h2 id="current-word">Loading...</h2>
+            <input type="text" id="user-input" placeholder="Start typing..." autocomplete="off" autofocus>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
